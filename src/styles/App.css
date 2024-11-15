@@ -1,0 +1,78 @@
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* 전역 기본 스타일 */
+body {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* 공통 요소 스타일 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Flexbox 유틸리티 */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* 헤더와 푸터 간격 조정 */
+header {
+  margin-bottom: 2rem;
+}
+
+footer {
+  margin-top: 2rem;
+  padding: 1rem 0;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+/* 기본 버튼 스타일 */
+button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+button.primary {
+  background-color: #007bff;
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #0056b3;
+}
