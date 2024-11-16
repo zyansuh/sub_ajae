@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import Modal from "react-modal"; // react-modal 가져오기
 
 // Styled-components로 스타일 정의
 const AppContainer = styled.div`
@@ -39,16 +40,40 @@ const Button = styled.button`
   }
 `;
 
+// react-modal 초기화 (필수)
+Modal.setAppElement("#root");
+
 function App() {
-  const handleClick = () => {
-    alert("Button clicked!");
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <AppContainer>
       <Header>Welcome to AjaeChelin</Header>
       <Description>Explore AI-powered dad jokes and much more!</Description>
-      <Button onClick={handleClick}>Get Started</Button>
+      <Button onClick={openModal}>Get Started</Button>
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        style={{
+          overlay: { backgroundColor: "rgba(0, 0, 0, 0.5)" },
+          content: {
+            color: "#333",
+            padding: "2rem",
+            borderRadius: "10px",
+            width: "400px",
+            margin: "auto",
+            textAlign: "center",
+          },
+        }}
+      >
+        <h1>Modal Title</h1>
+        <p>This is a modal content!</p>
+        <Button onClick={closeModal}>Close Modal</Button>
+      </Modal>
     </AppContainer>
   );
 }

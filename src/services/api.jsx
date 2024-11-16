@@ -4,25 +4,32 @@
 // 임시적으로 미리 코딩을 해놨습니다. 수정해야해요...........
 // 금요일에 미리미리 해놓으려고 하다가 그냥 CRUD 필요해서 만드능거에요......... 주석 필요하면 말씀주세요 사랑해요 여러분
 
-import axios from 'axios';
+import axios from "axios";
 
-// axios 기본 설정
-const api = axios.create({
-  baseURL: 'https://api.example.com', // 실제 API URL로 변경하세요
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+const OPENAI_API_URL = "https://api.openai.com/v1/completions";
+const API_KEY = process.env.REACT_APP_OPENAI_API_KEY; // 환경 변수에서 API 키 가져오기
 
-// 개그 목록을 가져오는 API 함수
-export const fetchJokes = async () => {
+export const fetchGPTRecommendation = async () => {
   try {
-    const response = await api.get('/jokes');
-    return response.data;
+    const response = await axios.post(
+      OPENAI_API_URL,
+      {
+        model: "text-davinci-003",
+        prompt: "오늘의 재미있는 아재개그를 추천해주세요!",
+        max_tokens: 100,
+        temperature: 0.7,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${API_KEY}`,
+        },
+      }
+    );
+
+    return response.data.choices[0].text.trim();
   } catch (error) {
-    console.error('Error fetching jokes:', error);
-    throw error;
+    console.error("Error fetching GPT recommendation:", error);
+    return "추천을 가져오는 데 실패했습니다.";
   }
 };
-
-// 다른 API 함수도 추가할 생각있어요.

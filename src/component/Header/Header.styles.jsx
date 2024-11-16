@@ -1,6 +1,6 @@
 //헤더 관련 스타일 컴포넌트 만드는곳
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderContainer = styled.header`
   display: flex;
@@ -23,9 +23,9 @@ export const Nav = styled.nav`
 export const Button = styled.button`
   background-color: transparent;
   border: none;
+  font-size: 1rem;
   color: #007bff;
   cursor: pointer;
-  font-size: 1rem;
 
   &:hover {
     color: #0056b3;
